@@ -35,7 +35,7 @@ def get_refresh_url(url: str):
         print(f'An unexpected error occurred: {e}')
         return None
 
-def get_url(url: str):
+def newget_url(url: str):
     resp = requests.get(url)
     soup = BeautifulSoup(resp.content, 'html.parser')
 
@@ -178,7 +178,7 @@ if __name__ == '__main__':
     redirect_url = get_refresh_url('http://' + os.environ.get('SOUSHUBA_HOSTNAME', 'www.soushu2025.com'))
     time.sleep(2)
     redirect_url2 = get_refresh_url(redirect_url)
-    url = get_url(redirect_url2)
+    url = newget_url(redirect_url2)
     
     while True:
         try:
@@ -187,7 +187,7 @@ if __name__ == '__main__':
                 break
             else :
                 
-                info=login(user_name,user_password,base_url)
+                info=login(user_name,user_password,url)
                 # print(info)
                 break
         except Exception as ex:
