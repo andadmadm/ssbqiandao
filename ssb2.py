@@ -104,9 +104,9 @@ def pl(session,headers,formhash,base_url,i,url_list):
 
         return i
     elif '回复限制' in pinglun.text:
-        print('重复评论')
+        print('啥也不说了，楼主就是给力！')
     elif '发布间隔' in pinglun.text:
-        print('评论太快，等待60s')
+        print('啥也不说了，楼主就是给力！')
 
     else:
         print('评论失败')
