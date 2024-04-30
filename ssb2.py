@@ -8,11 +8,43 @@ import random
 
 pl_session=requests.session()
 
+def get_refresh_url(url: str):
+    try:
+        response = requests.get(url)
+        if response.status_code != 403:
+            response.raise_for_status()
+
+        soup = BeautifulSoup(response.text, 'html.parser')
+        meta_tags = soup.find_all('meta', {'http-equiv': 'refresh'})
+
+        if meta_tags:
+            content = meta_tags[0].get('content', '')
+            if 'url=' in content:
+                redirect_url = content.split('url=')[1].strip()
+                print(f"Redirecting to: {redirect_url}")
+                return redirect_url
+        else:
+            print("No meta refresh tag found.")
+            return None
+    except Exception as e:
+        print(f'An unexpected error occurred: {e}')
+        return None
+
+def get_url(url: str):
+    resp = requests.get(url)
+    soup = BeautifulSoup(resp.content, 'html.parser')
+
+    links = soup.find_all('a', href=True)
+    for link in links:
+        if link.text == "搜书吧入口":
+            return link['href']
+    return None
+
 def login(user_name, user_password,base_url):
     session = requests.session()
     user_name = os.getenv('SOUSHUBA_USERNAME')
     user_password = os.getenv('SOUSHUBA_PASSWORD')
-    base_url = os.getenv('BASE_URL_SECRET')
+    #base_url = os.getenv('BASE_URL_SECRET')
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.76"
     logging_api = f"{base_url}/member.php?mod=logging&action=login&loginsubmit=yes&infloat=yes&lssubmit=yes&inajax=1 "  # 登录接口
     headers = {
@@ -138,18 +170,18 @@ if __name__ == '__main__':
             simple_text = base_url+ '\n' + 'username' + '\n' + 'userpassword'
             fp_text = fp.write(simple_text)
 
-    with open('config.txt','a+',encoding='UTF-8') as fp:
-        fp.seek(0)
-        fp_text = fp.readlines()
-        user_name=fp_text[1].strip('\n').strip('')
-        user_password=fp_text[2].strip('\n').strip('')
-        base_url=fp_text[0].strip('\n').strip('')
+    redirect_url = get_refresh_url('http://' + os.environ.get('SOUSHUBA_HOSTNAME', 'www.soushu2025.com'))
+    time.sleep(2)
+    redirect_url2 = get_refresh_url(redirect_url)
+    url = get_url(redirect_url2)
+    
     while True:
         try:
             if user_name=='username':
                 print(f'请替换当前目录下config.txt中的username与password为你的账号密码，并且在第一行填入搜书吧的url，例如 https://www.284djs.soushu2028.com/ ,如果搜书吧域名更改，请更改为新的域名')
                 break
             else :
+                
                 info=login(user_name,user_password,base_url)
                 # print(info)
                 break
@@ -157,7 +189,7 @@ if __name__ == '__main__':
             time.sleep(3)
             print('失败')
             print(ex)
-    url_list=get_url(info[0], info[1], base_url)
+    url_list=get_url(info[0], info[1], url)
     num=0
     while num<=7:
         i=pl(info[0],info[1],info[2],info[3],num,url_list)
