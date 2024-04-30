@@ -5,6 +5,7 @@ import time
 import logging
 import random
 import requests
+import re
 from lxml import etree
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
