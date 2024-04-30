@@ -11,3 +11,5 @@
 | SOUSHUBA_HOSTNAME | 搜书吧域名   | `www.apr.soushu2029.com` |
 | SOUSHUBA_USERNAME | 搜书吧用户名 |                          |
 | SOUSHUBA_PASSWORD | 搜书吧密码   |                          |
+
+ssb2.py 修改自 https://github.com/cat3399/shoushuba
