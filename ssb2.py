@@ -12,6 +12,7 @@ def login(user_name, user_password,base_url):
     session = requests.session()
     user_name = os.getenv('SOUSHUBA_USERNAME')
     user_password = os.getenv('SOUSHUBA_PASSWORD')
+    base_url = os.getenv('BASE_URL_SECRET')
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.76"
     logging_api = f"{base_url}/member.php?mod=logging&action=login&loginsubmit=yes&infloat=yes&lssubmit=yes&inajax=1 "  # 登录接口
     headers = {
