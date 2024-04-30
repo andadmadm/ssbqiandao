@@ -81,8 +81,8 @@ def get_yinbi(session,headers,formhash,base_url):
 
 def pl(session,headers,formhash,base_url,i,url_list):
     message=['别的不说，楼主就是给力啊','谢谢楼主分享，祝搜书吧越办越好！','看了LZ的帖子，我只想说一句很好很强大！','太感谢了太感谢了太感谢了']
-    commen=random.choice(message)
-
+    #commen=random.choice(message)
+    #commen='啥也不说了，楼主就是给力！'
     comment_payload = {
         'formhash': formhash,
         'handlekey': 'register',
@@ -101,7 +101,7 @@ def pl(session,headers,formhash,base_url,i,url_list):
         i+=1
         get_yinbi(session, headers, formhash, base_url)
         print(f'评论成功，此次评论的帖子tid为 {tid} ,评论的内容为 {commen} ,等待60s后再次评论')
-
+        time.sleep(120)
         return i
     elif '回复限制' in pinglun.text:
         print('啥也不说了，楼主就是给力！')
