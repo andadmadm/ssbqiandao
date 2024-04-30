@@ -1,4 +1,4 @@
-name: Run soushuba qiandao
+name: ssb2
 on:
   push:
   # Allows you to run this workflow manually from the Actions tab
