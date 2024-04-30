@@ -9,7 +9,7 @@ jobs:
   run:
     runs-on: ubuntu-latest
     env:
-      BASE_URL_SECRET: ${{ secrets.BASE_URL_SECRET }}
+      # BASE_URL_SECRET: ${{ secrets.BASE_URL_SECRET }}
       SOUSHUBA_USERNAME: ${{ secrets.SOUSHUBA_USERNAME }}
       SOUSHUBA_PASSWORD: ${{ secrets.SOUSHUBA_PASSWORD }}
 
