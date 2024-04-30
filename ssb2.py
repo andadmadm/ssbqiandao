@@ -1,10 +1,15 @@
 # -*- coding:utf-8 -*-
-import re
-import time
 import os
+import sys
+import time
+import logging
+import random
 import requests
 from lxml import etree
-import random
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse
+import xml.etree.ElementTree as ET
+
 
 pl_session=requests.session()
 
