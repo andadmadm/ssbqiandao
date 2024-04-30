@@ -159,7 +159,7 @@ if __name__ == '__main__':
                                 os.environ.get('SOUSHUBA_USERNAME'),
                                 os.environ.get('SOUSHUBA_PASSWORD'))
         client.login()
-        client.space()
+        #client.space()
         credit = client.credit()
     except Exception as e:
         logger.error(e)
