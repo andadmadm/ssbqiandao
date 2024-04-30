@@ -81,8 +81,8 @@ def get_yinbi(session,headers,formhash,base_url):
 
 def pl(session,headers,formhash,base_url,i,url_list):
     message=['别的不说，楼主就是给力啊','谢谢楼主分享，祝搜书吧越办越好！','看了LZ的帖子，我只想说一句很好很强大！','太感谢了太感谢了太感谢了']
-    #commen=random.choice(message)
-    commen='啥也不说了，楼主就是给力！'.encode('utf-8')
+    commen=random.choice(message).encode("GBK")
+    #commen='啥也不说了，楼主就是给力！'.encode("GBK")
     comment_payload = {
         'formhash': formhash,
         'handlekey': 'register',
