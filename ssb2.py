@@ -165,7 +165,7 @@ def get_url(session,headers,base_url):
     return tid_list_set
 
 if __name__ == '__main__':
-    delay_seconds = random.randint(0, 3600)
+    delay_seconds = random.randint(10, 3600)
     print("等待", delay_seconds, "秒...")
     time.sleep(delay_seconds)
     print("延迟结束"
