@@ -168,18 +168,11 @@ if __name__ == '__main__':
     delay_seconds = random.randint(10, 3600)
     print("等待", delay_seconds, "秒...")
     time.sleep(delay_seconds)
-    print("延迟结束"
-    # user_name=input("输入账户名称")
+    print("延迟结束")
     user_name=''
-    # user_password=input("输入账户密码")
     user_password=''
     base_url=''
     text=''
-    if os.path.exists('config.txt')==False:
-        with open('config.txt', 'a+', encoding='UTF-8') as fp:
-            simple_text = base_url+ '\n' + 'username' + '\n' + 'userpassword'
-            fp_text = fp.write(simple_text)
-
     redirect_url = get_refresh_url('http://' + os.environ.get('SOUSHUBA_HOSTNAME', 'www.soushu2025.com'))
     time.sleep(2)
     redirect_url2 = get_refresh_url(redirect_url)
