@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
 
-
+logger = logging.getLogger(__name__)
 pl_session=requests.session()
 
 def get_refresh_url(url: str):
