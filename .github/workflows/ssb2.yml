@@ -26,6 +26,7 @@ jobs:
       - name: Generate random delay seconds
         id: generate_random_delay
         run: |
+          PYTHONUNBUFFERED=1
           import random
           delay_seconds = random.randint(0, 3600)
           echo "::set-output name=delay_seconds::$delay_seconds"
