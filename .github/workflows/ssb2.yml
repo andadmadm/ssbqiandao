@@ -9,7 +9,6 @@ jobs:
   run:
     runs-on: ubuntu-latest
     env:
-      # BASE_URL_SECRET: ${{ secrets.BASE_URL_SECRET }}
       SOUSHUBA_USERNAME: ${{ secrets.SOUSHUBA_USERNAME }}
       SOUSHUBA_PASSWORD: ${{ secrets.SOUSHUBA_PASSWORD }}
 
@@ -22,4 +21,12 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
       - run: pip install -r requirements.txt
+      - name: Generate random delay seconds
+        id: generate_random_delay
+        run: |
+          import random
+          delay_seconds = random.randint(0, 3600)
+          echo "::set-output name=delay_seconds::$delay_seconds"
+      - name: Show random delay seconds
+        run: echo "Random delay seconds: ${{ steps.generate_random_delay.outputs.delay_seconds }}"
       - run: python ssb2.py
