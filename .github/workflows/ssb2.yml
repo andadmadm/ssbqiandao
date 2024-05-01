@@ -22,4 +22,13 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
       - run: pip install -r requirements.txt
+
+      - name: Generate random delay seconds
+        id: generate_random_delay
+        run: |
+          import random
+          delay_seconds = random.randint(0, 3600)
+          echo "::set-output name=delay_seconds::$delay_seconds"
+
+      
       - run: python ssb2.py
