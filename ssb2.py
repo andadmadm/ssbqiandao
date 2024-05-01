@@ -167,6 +167,7 @@ def get_url(session,headers,base_url):
 if __name__ == '__main__':
     delay_seconds = random.randint(10, 3600)
     print("等待", delay_seconds, "秒...")
+    logger.info("等待", delay_seconds, "秒...")
     time.sleep(delay_seconds)
     print("延迟结束")
     user_name=''
