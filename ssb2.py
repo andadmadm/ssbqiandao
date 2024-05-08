@@ -117,7 +117,7 @@ def get_yinbi(session,headers,formhash,base_url):
 
 
 def pl(session,headers,formhash,base_url,i,url_list):
-    message=['别的不说，楼主就是给力啊','谢谢楼主分享，祝搜书吧越办越好！','看了LZ的帖子，我只想说一句很好很强大！']
+    message=['啥也不说了，楼主就是给力！','谢谢楼主分享，祝搜书吧越办越好！','看了LZ的帖子，我只想说一句很好很强大！']
     commen=random.choice(message).encode("GBK")
     #commen='啥也不说了，楼主就是给力！'.encode("GBK")
     comment_payload = {
@@ -138,12 +138,12 @@ def pl(session,headers,formhash,base_url,i,url_list):
         i+=1
         get_yinbi(session, headers, formhash, base_url)
         print(f'评论成功，此次评论的帖子tid为 {tid} ,评论的内容为 {commen} ,等待60s后再次评论')
-        time.sleep(120)
+
         return i
     elif '回复限制' in pinglun.text:
-        print('啥也不说了，楼主就是给力！')
+        print('重复评论')
     elif '发布间隔' in pinglun.text:
-        print('啥也不说了，楼主就是给力！')
+        print('评论太快，等待60s')
 
     else:
         print('评论失败')
